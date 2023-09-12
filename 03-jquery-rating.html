@@ -9,29 +9,28 @@
         $(".star").click( function(){
           const value = $(this).attr("data-value")
         
-          
+          $.ajax({
+            url: "https://api.dev-master.ninja/js/rating",
+            method: "POST",
+            data: { rating:value},
+            success: function(result){
 
-          
-          // clear all the reds
-          $(".star").removeClass("red")
+                let gemiddelde = result.result
+                
+                // clear all the reds
+                $(".star").removeClass("red")
 
-          // paint it red
-          $(".star").each((index, elem) => {
-            const itemValue = $(elem).attr("data-value")
-            if (itemValue <= value) {
-              $(elem).addClass("red")
+                // paint it red
+                $(".star").each((index, elem) => {
+                const itemValue = $(elem).attr("data-value")
+                if (itemValue <= gemiddelde) {
+                    $(elem).addClass("red")
+
             }
           })
-          
-
-
-
-        
+            }
+          })
         })
-
-        
-
-
       });    
     </script>
   </head>
