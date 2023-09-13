@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/vegas-style.css">
+        <link rel="stylesheet" href="vegas/vegas.css">
+
+        <script src="js/jquery.js"></script>
+        <script src="vegas/vegas.js"></script>
+
+        <script>
+            $(document).ready( function(){
+
+                $.ajax({
+                    url: "http://localhost/educom-jquery-basis/images.json",
+                    method: "GET",
+                    success: function(result) {
+                        const mySlides = result.mySlides
+                        
+
+                $("#background-image").vegas({
+                    overlay: "vegas/overlays/02.png",
+                    slides: mySlides,
+                    walk: function(index, slideSettings) {
+                        $(".text-block h1").html(mySlides[index].title)
+                        $(".text-block h4").html(mySlides[index].subtitle)
+                    }
+                })
+
+            }
+                })
+            })
+
+        </script>
+    </head>
+    <body>
+        <div id="background-image">
+            <div class="container">
+                <div class="text-block">
+                    <h1></h1>
+                    <h4></h4>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
